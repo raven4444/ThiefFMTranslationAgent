@@ -1,0 +1,19 @@
+{
+  "prompts": [
+    {
+      "content": "Hello world",
+      "version": "20250113-1",
+      "type": "objectives"
+    },
+    {
+      "content": "Sample image data",
+      "version": "20250113-1",
+      "type": "items"
+    },
+    {
+      "content": "User profile info",
+      "version": "20250113-1",
+      "type": "books"
+    }
+  ]
+}

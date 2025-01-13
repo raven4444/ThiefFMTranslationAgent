@@ -25,3 +25,7 @@ pub const KEY_FOUND: &str = "Znaleziono zapisany klucz API.";
 pub const USE_KEY: &str = "Używam klucza:";
 pub const CONTINUE: &str = "Naciśnij dowolny klawisz aby kontynuować...";
 pub const CANNOT_FIND_APP_DATA_DIR: &str = "Nie można znaleźć katalogu %AppData%/Local";
+
+pub const OPENAI_API_URL: &str = "https://api.openai.com/v1";
+pub const OPENAI_MODEL: &str = "gpt-4o";
+pub const OPENAI_API_ERROR: &str = "API OpenAI zwróciło błąd: ";

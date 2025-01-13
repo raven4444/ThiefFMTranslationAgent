@@ -76,10 +76,18 @@ async fn retrieve_existing_key(storage: &SecureStorage) -> io::Result<String> {
 }
 
 async fn handle_new_key(storage: &SecureStorage) -> io::Result<String> {
-    println!("{}{}{}", COLOR_YELLOW, KEY_NOT_FOUND, COLOR_RESET);
     let new_key = get_valid_api_key().await?;
     store_api_key(storage, &new_key)?;
     Ok(new_key)
+}
+
+fn ask_use_current_key() -> io::Result<bool> {
+    print!("{}{}{}", COLOR_GREEN, REUSE_KEY, COLOR_RESET);
+    io::stdout().flush()?;
+    let mut input = String::new();
+    io::stdin().read_line(&mut input)?;
+    let input = input.trim().to_lowercase();
+    Ok(input.is_empty() || input.to_lowercase() == YES)
 }
 
 #[tokio::main]
@@ -90,11 +98,18 @@ async fn main() -> io::Result<()> {
         println!("{}{}{}", COLOR_GREEN, KEY_FOUND, COLOR_RESET);
         retrieve_existing_key(&storage).await?
     } else {
+        println!("{}{}{}", COLOR_YELLOW, KEY_NOT_FOUND, COLOR_RESET);
         handle_new_key(&storage).await?
     };
 
     let masked_key = mask_api_key(&api_key);
     println!("{}{} {}{}", COLOR_YELLOW, USE_KEY, masked_key, COLOR_RESET);
+    let use_current_key = ask_use_current_key()?;
+    if !use_current_key {
+        let api_key = handle_new_key(&storage).await?;
+        let masked_key = mask_api_key(&api_key);
+        println!("{}{} {}{}", COLOR_YELLOW, USE_KEY, masked_key, COLOR_RESET);
+    }
     let openai_client = OpenAIClient::new(api_key);
     //todo
     wait_for_key_press()?;

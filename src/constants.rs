@@ -11,10 +11,11 @@ pub const COLOR_RED: &str = "\x1b[31m"; // Red
 pub const COLOR_YELLOW: &str = "\x1b[33m"; // Yellow
 pub const COLOR_RESET: &str = "\x1b[0m";
 
-pub const ENTER_API_KEY: &str = "Podaj klucz API do OpenAI:";
+pub const ENTER_API_KEY: &str = "Podaj klucz API do OpenAI: ";
 pub const API_KEY_PREFIX: &str = "sk-";
 pub const CENSORSHIP: &str = "****";
-pub const INVALID_KEY_WARNING: &str = "Nieprawidłowy format klucza API. Klucz musi zaczynać się od 'sk-'. Spróbuj ponownie.";
+pub const INVALID_KEY_WARNING: &str = "Klucz jest nieprawidłowy, możliwe że Twoje konto OpenAI nie ma dodanej metody płatności.";
+pub const VALID_KEY: &str = "Wszystko okej, OpenAI potwierdziło klucz.";
 pub const KEY_SAVED: &str = "Pomyślnie zapisano klucz API.";
 pub const KEY_RETRIEVED: &str = "Pomyślnie odszyfrowano klucz API.";
 pub const KEY_RETRIEVAL_ERROR: &str = "Błąd podczas odczytu klucza API:";

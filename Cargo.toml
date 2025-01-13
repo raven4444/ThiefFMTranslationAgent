@@ -14,6 +14,8 @@ sha2 = "0.11.0-pre.4"
 rand = "0.9.0-beta.1"
 openai = "1.0.0-alpha.18"
 tokio = { version = "1.43.0", features = ["rt", "rt-multi-thread", "macros"] }
+anyhow = "1.0.95"
+reqwest = "0.12.12"
 
 [build-dependencies]
-embed-resource = "2.5.1"
+embed-resource = "3.0.1"

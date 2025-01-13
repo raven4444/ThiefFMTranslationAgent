@@ -1,11 +1,14 @@
 mod constants;
 mod openai_client;
 mod secure_storage;
+mod prompt_service;
 
+use std::error::Error;
 use crate::openai_client::OpenAIClient;
 use crate::secure_storage::SecureStorage;
 use constants::*;
 use std::io::{self, Write};
+use crate::prompt_service::PromptService;
 
 fn read_api_key_from_console() -> io::Result<String> {
     print!("{}{}{}", COLOR_GREEN, ENTER_API_KEY, COLOR_RESET);
@@ -91,7 +94,7 @@ fn ask_use_current_key() -> io::Result<bool> {
 }
 
 #[tokio::main]
-async fn main() -> io::Result<()> {
+async fn main() -> Result<(), Box<dyn Error>> {
     let storage = SecureStorage::new()?;
 
     let api_key = if storage.api_key_exists() {
@@ -111,6 +114,8 @@ async fn main() -> io::Result<()> {
         println!("{}{} {}{}", COLOR_YELLOW, USE_KEY, masked_key, COLOR_RESET);
     }
     let openai_client = OpenAIClient::new(api_key);
+    let prompt_service = PromptService::initialize().await?;
+    prompt_service.print_prompts_overview();
     //todo
     wait_for_key_press()?;
     Ok(())

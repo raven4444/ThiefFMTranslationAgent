@@ -24,11 +24,13 @@ pub const KEY_CORRUPTED: &str = "Zapisany klucz API jest niepoprawny.";
 pub const KEY_NOT_FOUND: &str = "Nie znaleziono klucza API.";
 pub const KEY_FOUND: &str = "Znaleziono zapisany klucz API.";
 pub const USE_KEY: &str = "Używam klucza:";
-pub const CONTINUE: &str = "Naciśnij dowolny klawisz aby kontynuować...";
+pub const CONTINUE: &str = "Naciśnij enter aby kontynuować...";
 pub const CANNOT_FIND_APP_DATA_DIR: &str = "Nie można znaleźć katalogu %AppData%/Local";
 pub const REUSE_KEY: &str = "Czy chcesz użyć zapisanego klucza API? (T/n): ";
 pub const YES: &str = "t";
+pub const AVAILABLE_PROMPTS: &str = "Dostępne prompty:";
 
 pub const OPENAI_API_URL: &str = "https://api.openai.com/v1";
 pub const OPENAI_MODEL: &str = "gpt-4o";
 pub const OPENAI_API_ERROR: &str = "API OpenAI zwróciło błąd: ";
+pub const PROMPTS_URL: &str = "https://raw.githubusercontent.com/raven4444/ThiefFMTranslationAgent/refs/heads/master/assets/prompts/prompts.json";

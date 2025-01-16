@@ -33,4 +33,5 @@ pub const AVAILABLE_PROMPTS: &str = "Dostępne prompty:";
 pub const OPENAI_API_URL: &str = "https://api.openai.com/v1";
 pub const OPENAI_MODEL: &str = "gpt-4o";
 pub const OPENAI_API_ERROR: &str = "API OpenAI zwróciło błąd: ";
-pub const PROMPTS_URL: &str = "https://raw.githubusercontent.com/raven4444/ThiefFMTranslationAgent/refs/heads/master/assets/prompts/prompts.json";
+pub const PROMPTS_FILE: &str = "prompts.json";
+pub const FILE_SERVER_BASE_URL: &str = "https://raw.githubusercontent.com/raven4444/ThiefFMTranslationAgent/refs/heads/master/assets/prompts/";

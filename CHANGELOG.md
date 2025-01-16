@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Connection to OpenAI API
 - Custom exe icon
 - Option to replace saved api key
+- Prompt service to fetch prompts from repository
+- Prompts for all calls to LLM
 
 ### Changed
 

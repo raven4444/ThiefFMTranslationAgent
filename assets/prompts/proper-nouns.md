@@ -1,0 +1,317 @@
+Here you have proper nouns. Everything is extracted from official Polish versions of the Thief games.
+There is one noun per line, first word is in english, second in Polish. Delimiter is double = sign.
+If you match word which exist on this list, use Polish version in your translation. 
+Do not forget about correct polish spelling and grammar and other rules of the language which I already mentioned.
+
+<proper_nouns>
+- Mechanist==Mechanista
+- T. M. Blackheart==T. M. Frasobliwy
+- Lucky Selentura==Szczęściarz Selentura
+- Cid Capezza==Cyd Capezza
+- Lady Angelica==Lady Angelika
+- Addonizio Crystal==Kryształ Addonizio
+- The City Watch==Straż Miejska
+- Governor Horridge==Gubernator Horridge
+- First City Bank and Trust==Pierwszy Miejski Bank Depozytowo-Kredytowy
+- The Crippled Burrick==Koślawy Bełkotliwiec
+- Rampone Dockside Shipping==Nadbrzeżne Przedsiębiorstwo Transportowe Rampone'a
+- Captain Carr==Kapitan Carr
+- Bluecoats==Błękitne Płaszcze
+- Mistress Carrie==Pani Carrie
+- Shalebridge==Przedmoście
+- Wayside Dock District==Dzielnica Doków Przydroża
+- Richmond Boulevard==Bulwar Richmonda
+- Brother Artus==brat Artus
+- Records Hall==Archiwum
+- Secure Records Room==Sala Tajnych Dokumentów
+- Sheriff Gorman Truart==Szeryf Gorman Truart
+- Truart Estate==Posiadłość Truarta
+- Lt. Hagen==Porucznik Hagen
+- Mosley==Mosley
+- The Pagans==Poganie
+- Dayport==Dzienny Port
+- Greevs St.==Ul. Greevsa
+- Courtyard Trail==Szlak Dziedzińców
+- Balma Drive==Trakt Balma
+- Pearson Manor==Posiadłość Pearsona
+- Danno block==Osiedle Danno
+- Kimmel Avenue==Aleja Kimmela
+- Fort Street==Ul. Warowni
+- Arlen Avenue==Aleja Arleny
+- N. Bisbee Drive==Trakt N. Bisbee'ego
+- Glenover Drive==Trakt Glenovera
+- Gapoda Oak==Dąb Gapody
+- E. Park Boulevard==Bulwar E. Parka
+- Hawkings Drive==Trakt Hawkinsa
+- Gorn Avenue==Aleja Gorna
+- Northcrest Road==Ul. Herbowa
+- Millans Drive==Trakt Millana
+- Shoalsgate Tavern==Gospodzie Nadrzecze
+- Mechanists==Mechaniści
+- The Keepers==Opiekunowie
+- Hammerites==Młotodzierżcy
+- Shoalsgate==Nadrzecze
+- Garrett==Garrett
+- Captain Pearsal==Kapitan Pearsal
+- Dayport==Dzienny Port
+- The Crippled Burick==Pod Koślawym Bełkotliwcem
+- The Taffer Boys==Łacherscy Chłopcy
+- Karras==Karras
+- The Builder==Budowniczy
+- Angelwatch==Strażnica Anioła
+- Tickspring==Drucik
+- First City Bank and Trust==Pierwszy Miejski Bank Depozytowo-Kredytowy
+- Gentry Boulevard==Bulwar Szlachecki
+- North Quarter==Północna Dzielnica
+- Sergeant Bander==Sierżant Bander
+- Center Street==ulicy Środkowej
+- Stephanie==Stefania
+- Truart Estate==Posiadłość Truarta
+- Volari==Volari
+- Iblis Truart Sr.==Iblis Truart Senior
+- Leeta Truart==Leeta Truart
+- Woodsie Lord==Leśny Pan
+- Jacksberry Giver==Sadownik
+- Lt. Mosley==Porucznik Mosley
+- Brother Dale==Brat Dale
+- Brother Sachelman==Brat Sachelman
+- St. Yora==św. Yora
+- Brother Mason==Brat Mason
+- Father Tennor==Ojciec Tennor
+- Cragscleft==Więzienie Rozpadlin
+- Brother Terrence==Brat Terrence
+- Father Theol==Brat Theol
+- The Hammers==Młotodzierżcy
+- Elevated Acolyte==Starszego Akolitę
+- High Priest==Arcykapłana
+- Keystone Tree==Drzewem Stożkowym
+- Prayer of the Wallbuilder==Modlitwę Budowniczego Murów
+- Holy Symbol of the Temple==Błogosławiony Symbol Świątyni
+- The Forge's Child==Dziecię Kuźni
+- The First Hammer==Pierwszy Młot
+- Skull of St. Yora==Czaszka św. Yory
+- Hammerite==Młotodzierżców
+- The Builder==Budowniczy
+- Brother Wainwright==Brat Wozownik
+- Castle Morendrum==zamk Morendrum
+- J.B. Tuttleshank==J. B. Tuttleshank
+- Theodore==Teodora
+- Longdaddy==Długojczulek
+- Thistlewell==Chwastowski
+- The Master Builder==Mistrz Budowniczy
+- Friend Tickspring==Przyjaciel Drucik
+- Brother Ortham==Brat Ortham
+- Captain Blouf==Kapitan Blouf
+- Brother Mendelus==Brat Mendelus
+- Friend Coltus==Przyjaciel Coltus
+- Father Karras==Ojciec Karras
+- Captain Pearsal==Kapitan Pearsal
+- St. Jenel's==Św. Jenel's
+- Brother Renault==Brat Renault
+- Brother Martello==Brat Martello
+- Brother Murus==Brat Murus
+- St. Tennor's==Św. Tennor
+- St. Vale's==Św. Vale's
+- St. Yora's==Św. Yora's
+- Lord Gervaisius==Lord Gerwazjusz
+- Bram Gervaisius==Bram Gerwaisius
+- Duma==Duma
+- Ramirez==Ramirez
+- Bafford==Bafford
+- Cetus Project==Projekt Cetus
+- Cetus Amicus==Cetus Amicus
+- Subaquatic Outpost 1==1. Podmorskiej Stacji
+- Father Norrell==ojciec Norell
+- The Regent Council==Rady Regencyjnej
+- Summer Solstice Soiree==Wieczór Letniego Przesilenia
+- Illyrian==iliriańskiej
+- Throvian==trowiańskiego
+- Ritual of Consecration==Rytuału Konsekracji
+- The Eye==Oko
+- Lunar Pool==Księżycową Sadzawką
+- Compass Borning==Kompas Rozrodu
+- Compass Leaf==Kompas Liścia
+- Stormsie Compass==Kompas Burzy
+- Flamesie Compass==Kompas Płomienia
+- Compass Tidestream==Kompas Pływu
+- Compass Stone==Kompas Głazu
+- Compass Darkness==Kompas Ciemności
+- The Compasses==Kompasy
+- The Servants==Służących
+- The Builder's Children==Dziecięta Budowniczego
+- The Book of the Nail==Księga Gwoździa
+- The New Scripture of The Master Builder==Nowy Kodeks Mistrza Budowniczego
+- Tol Camrick and Sons==Tola Camricka i Synów
+- The Hammerites==Młotodzierżców
+- The Ritual of Consecration==Rytuał Konsekracji
+- Brother Gerard==Brat Gerard
+- The Lady==Nasza Pani
+- The City==Miasto
+- Dayport Trader's Bank==Bank Kupiecki Dziennego Portu
+- The Book of the Nail==Księga Gwoździa
+- The Cultivator artifact==przedmiot zwany Kultywatorem
+- The Master Key==Główny Klucz
+- The Holy Symbol of the Temple==Błogosławiony Symbol Świątyni
+- Gorman Truart, Sherriff==Gorman Truart, Szeryf
+- Brother Sachelman==Brat Sachelman
+- The Watchful Eyes==Czujnych Oczu
+- Metal Beasts==Metalowych Bestii
+- St. Yora==św. Yory
+- The Wallbuilder==Budowniczy Murów
+- Cetus Amicus==Cetus Amicus
+- Master Builder==Mistrz Budowniczy
+- Necrotic Mutox==Nekrotyk Mutox
+- Soulforge Cathedral==Katedra, Kuźnia Dusz
+- Markham's Isle==Wyspa Markhama
+- Builder's Children==Dziecięta Budowniczego
+- Captain Markham==kapitan Markham
+- Starlight Cove==Gwiaździsta Zatoka
+- Lord Brosius==Lorda Brosiusa
+- Steinkrauss==Steinkraussem
+- Mahk==Mahka
+- Lesser Hrabota==Lessera Hrabota
+- Solus==Solusem
+- Duke Leonard==Księcia Leonarda
+- Lord Church==Lorda Churcha
+- Magistrate Gilby==urzędnika Gilby'ego
+- Lord Meuse==Lorda Meuse
+- Lord Randall==Lorda Randalla
+- Brother Cavador==Brat Cavador
+- The Dock==Przystań
+- K-D Site==Miejsce KD
+- The Builder==Budowniczy
+- Ancestors==Przodków
+- The Mechanist==Mechaniści
+- Downwinder==Zawietrznik
+- Builder==Budowniczy
+- Father Karras==Ojciec Karras
+- Karras==Karras
+- Soulforge Cathedral==Kuźnia Dusz
+- Eastport==Port Wschodni
+- Mechanists==Mechaniści
+- Guiding Beacon==Nadajnik Naprowadzający
+- Storage Room 2==Magazyn nr 2
+- Factory Bay C==hala Fabryczna C
+- Stage 1 Piece==Półprodukt 1
+- Rolling Machine==Walcarka
+- Factory Bay A==Hala Fabryczna A
+- Stage 2 Piece==Półprodukt 2
+- Sealing Machine==Wytłaczarka
+- Factory Bay D==Hala Fabryczna D
+- Stage 3 Piece==Półprodukt 3
+- Fusing Machine==Lutownica
+- Factory Bay E==Hala Fabryczna E
+- Signal Bolt==Sworzeń Sygnalizacyjny
+- Storage Room 3==Magazyn nr 3
+- Gauge==Miernik
+- Bantam Node==Łożysko Węzłowe
+- Linking Machine==Spajarka
+- Iron Chassis==Żelazna Rama
+- Metal Plate==Metalowa Płyta
+- Quicklime Mixture==Mieszanka Wapienna
+- Amalgamating Machine==Mieszarka
+- Factory Bay B==Hala Fabryczna B
+- Mine Bulb==Zbiornik Miny
+- Acidic Mixture==Mieszanka Kwasowa
+- Flare Mixture==Mieszanka Fosforyzująca
+- Spring Wiring==Zwój Sprężyny
+- Flux Spheroid==Szklista Kula
+- Storage Room 1==Magazyn nr 1
+- The Master Builder==Mistrz Budowniczy
+- The City==Miasto
+- Necrotic Mutox==Nekrotyk Mutox
+- Precursors==Prekursorów
+- Holy Rust==Świętą Rdzę
+- Garrett==Garrett
+- Catherine==Katarzyna
+- Mr. Cribs==Pan Cribs
+- Captain Colliard==kapitan Colliard
+- Cutty==Kusy
+- Milordy Bafford==Milord Bafford
+- Dreckboun==Dziupli
+- Tarquis==Tarkwis
+- Dominic==Dominik
+- Cedric==Cedryk
+- Commissioner of Taxes==Poborca Podatkowy
+- Cell Block 11==Blok więzienny nr 1
+- Cell Block 22==Blok więzienny nr 2
+- Gelland==Gelland
+- Thief==złodziej
+- Nammon==Nammon
+- Cell Block 32==Blok więzienny nr 3
+- Heretic==heretyk
+- Basso==Bazyl
+- Cell Block 41==Blok więzienny nr 4
+- Thiefs-pawn==paser
+- The Horn of Quintus==Róg Kwintusa
+- Bonehoard==Kościelisko
+- Brother Keybond==Bracie Kluczniku
+- Brother Inquistor==Brat Inkwizytor
+- Brother Carpenter==Brat Cieśla
+- Quintus==Kwintus
+- Adolpho==Adolfo
+- Burricks==bełkotliwce
+- Felix==Feliks
+- The Watchman's Grave==Grób Wartownika
+- Keeper Lukas==Strażnik Lukas
+- Trickster==Szachraj
+- Keeper Andrus==Strażnik Andrus
+- Constable Tule==Posterunkowy Tule
+- Market Street==ulicy Targowej
+- Rubin St==ulicy Rubina
+- Census Bureau==Urzędu Statystycznego
+- Elemental Talismans==Talizmanów Żywiołów
+- Lost City==Zaginione Miasto
+- Talisman of Fire==Talizman Ognia
+- Talisman of Water==Talizman Wody
+- Talisman of Air==Talizman Powietrza
+- Hammerites==Młotodzierżcy
+- Earth Talisman==Talizman Ziemi
+- Hand Brotherhood==Bractwu Dłoni
+- Smith-in-Exile==Kowala-Na-Wygnaniu
+- Serpentyle Torc==Wężowej Obręczy
+- Cathedral Street==ulicy Katedralnej
+- de Perrin street==ulicy de Perrina
+- Lord Whitsimmon==Lord Whitsimmon
+- Barton==Barton
+- Adan==Adan
+- Hagen==Hagen
+- Truart==Truart
+- City Watch==Straż Miejska
+- Mechanists==Mechaniści
+- Lt M==Porucznik M
+- Ramirez==Ramireza
+- Temple of N'Lahotep==Świątyni N'Lahotepa
+- Guild of Enlightenment==Gildii Oświecenia
+- Mailu==Awizo
+- Emperor's colosseum==koloseum Cesarza
+- Jabril==Jabril
+- Lord Signoli==Lord Signoli
+- Weythran==Weythranie
+- Blackrat==Czarny Szczur
+- Carter's Gate==Bramie Cartera
+- Watch Sergeant Harwin==Sierżancie Harwinie
+- Lady Bumbleson==Lady Brzęczyszczykiewicz
+- Watch Officer Morgan==Oficer Straży Miejskiej
+- Tol Camrick & Sons==Tol Camrik i Synowie
+- Tatyana's Flowers==Kwiaty Tatiany
+- Esse range==paśmie Esse
+- Tatyana Yokobik==Tatiana Yokobik
+- Rakel's Tome of Magic==Rakela Księga o Magii
+- The Keepers==Strażnicy
+- Andrus==Andrus
+- Shalebridge==Przedmoście
+- Newmarket==Nowego Targu
+- New Quarter==Nowej Dzielnicy
+- Shemenovs==Shemenov
+- Webster==Webster
+- Docks==Doki
+- Eastport==Wschodni Port
+- Dayport==Dzienny Port
+- Order of the Vine==Bractwem Winorośli
+- Dorcas Goodfellow==Dorkas Dobrodziej
+- Blackbrook Underguild==Podziemnej Gildii z Mętnego Ruczaju
+- Compendium of Natural Magic==Kompendium Magii Naturalnej
+- The Watch==Straż
+- Burrick==Bełkotliwiec
+</proper_nouns>

@@ -1,19 +1,24 @@
 {
   "prompts": [
     {
-      "content": "Hello world",
-      "version": "20250113-1",
-      "type": "objectives"
+      "type": "objectives",
+      "version": "20250116-1",
+      "file": "objectives.md"
     },
     {
-      "content": "Sample image data",
-      "version": "20250113-1",
-      "type": "items"
+      "type": "items",
+      "version": "20250116-1",
+      "file": "items.md"
     },
     {
-      "content": "User profile info",
-      "version": "20250113-1",
-      "type": "books"
+      "type": "books",
+      "version": "20250116-1",
+      "file": "books.md"
+    },
+    {
+      "type": "proper-nouns",
+      "version": "20250116-1",
+      "file": "proper-nouns.md"
     }
   ]
 }

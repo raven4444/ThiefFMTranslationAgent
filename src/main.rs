@@ -13,6 +13,8 @@ use crate::utils::*;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
+    check_version().await?;
+
     let storage = SecureStorage::new()?;
 
     let api_key = if storage.api_key_exists() {
@@ -25,7 +27,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let masked_key = mask_api_key(&api_key);
     println!("{}{} {}{}", COLOR_YELLOW, USE_KEY, masked_key, COLOR_RESET);
-    let use_current_key = ask_use_current_key()?;
+    print!("{}{}{}", COLOR_GREEN, REUSE_KEY, COLOR_RESET);
+    let use_current_key = ask_default_true()?;
     if !use_current_key {
         let api_key = handle_new_key(&storage).await?;
         let masked_key = mask_api_key(&api_key);

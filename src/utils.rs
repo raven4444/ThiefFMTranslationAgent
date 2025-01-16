@@ -97,7 +97,7 @@ pub fn ask_default_true() -> io::Result<bool> {
 pub async fn check_version() -> Result<(), Box<dyn Error>> {
     let current_version = env!("CARGO_PKG_VERSION");
     let app_name = env!("CARGO_PKG_NAME");
-    println!(t
+    println!(
         "{}{} {}{}",
         COLOR_GREEN, app_name, current_version, COLOR_RESET
     );

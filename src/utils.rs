@@ -1,14 +1,14 @@
 use crate::constants::*;
 use crate::openai_client::OpenAIClient;
 use crate::secure_storage::SecureStorage;
+use chardet::detect;
+use encoding_rs::Encoding;
 use serde::Deserialize;
 use std::error::Error;
 use std::fs;
 use std::io::{self, Read, Write};
 use std::path::Path;
 use std::process::exit;
-use chardet::detect;
-use encoding_rs::Encoding;
 
 #[derive(Deserialize)]
 struct GithubRelease {
@@ -175,22 +175,32 @@ pub fn get_fm_directory_path() -> io::Result<String> {
     }
 }
 
-pub fn read_file_content(file_path: &Path) -> Result<String, Box<dyn std::error::Error>> {
+pub(crate) fn read_file_content(file_path: &Path) -> Result<String, Box<dyn Error>> {
     let mut raw_bytes = Vec::new();
     let mut file = fs::File::open(file_path)?;
     file.read_to_end(&mut raw_bytes)?;
 
+    if raw_bytes.starts_with(&[0xEF, 0xBB, 0xBF]) {
+        raw_bytes = raw_bytes[3..].to_vec();
+    }
+
     let detect_result = detect(&raw_bytes);
     let encoding_name = detect_result.0;
-
-    let encoding = Encoding::for_label(encoding_name.as_bytes())
-        .unwrap_or(encoding_rs::WINDOWS_1252);
-
+    let encoding =
+        Encoding::for_label(encoding_name.as_bytes()).unwrap_or(encoding_rs::WINDOWS_1252);
     let (cow, _, had_errors) = encoding.decode(&raw_bytes);
 
     if had_errors {
-        println!("Warning: Some characters couldn't be decoded properly using detected encoding: {}", encoding_name);
+        println!(
+            "Warning: Some characters couldn't be decoded properly using detected encoding: {}",
+            encoding_name
+        );
     }
 
-    Ok(cow.into_owned())
+    let content = cow.into_owned();
+    if content.starts_with('\u{FEFF}') {
+        Ok(content[1..].to_string())
+    } else {
+        Ok(content)
+    }
 }

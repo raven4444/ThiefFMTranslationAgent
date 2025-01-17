@@ -41,7 +41,7 @@ impl TranslationService {
 
         self.process_objnames_file(&base_path)?;
         self.process_goals_files(&base_path)?;
-
+        self.process_books_files(&base_path)?;
         Ok(())
     }
 
@@ -96,6 +96,39 @@ impl TranslationService {
                         self.process_file(&goals_file.path(), &custom_filename)?;
                     }
                 }
+            }
+        }
+
+        Ok(())
+    }
+
+    fn process_books_files(&mut self, base_path: &Path) -> Result<(), Box<dyn std::error::Error>> {
+        let books_dir = fs::read_dir(base_path)?
+            .filter_map(Result::ok)
+            .find(|entry| entry.file_name().to_string_lossy().to_lowercase() == "books")
+            .ok_or("Books directory not found")?;
+
+        let english_dir = fs::read_dir(books_dir.path())?
+            .filter_map(Result::ok)
+            .find(|entry| entry.file_name().to_string_lossy().to_lowercase() == "english");
+
+        let scan_dir = if let Some(eng_dir) = english_dir {
+            eng_dir.path()
+        } else {
+            books_dir.path()
+        };
+
+        for entry in fs::read_dir(scan_dir)? {
+            let entry = entry?;
+            if entry
+                .path()
+                .extension()
+                .and_then(|ext| ext.to_str())
+                .map(|ext| ext.to_lowercase() == "str")
+                .unwrap_or(false)
+            {
+                let filename = entry.file_name().to_string_lossy().to_string();
+                self.process_file(&entry.path(), &filename)?;
             }
         }
 

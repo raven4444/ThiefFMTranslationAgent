@@ -31,6 +31,11 @@ pub const UPDATE_APP: &str = "Czy chcesz otworzyć stronę aby pobrać nową wer
 pub const YES: &str = "t";
 pub const OPENAI_API_ERROR: &str = "API OpenAI zwróciło błąd: ";
 pub const NEW_VERSION: &str = "Dostępna jest nowa wersja aplikacji - ";
+pub const PATH_TO_FM: &str =  "Podaj ścieżkę do fanmisji zainstalowanej przez AngelLoader, domyślnie jest to folder /FMs/nazwa misji w katologu gry: ";
+pub const MISSING_DIRECTORY: &str =  "Katalog nie istnieje!";
+pub const INVALID_PATH: &str =  "Podana ścieżka jest nieprawidłowa!";
+pub const MISSING_FM_FILES: &str =  "Nie znaleziono plików misji!";
+pub const MISSION_DIRECTORY: &str =  "Katalog wybranej fanmisji to: ";
 
 pub const AVAILABLE_PROMPTS: &str = "Dostępne prompty:";
 pub const OPENAI_API_URL: &str = "https://api.openai.com/v1";
@@ -39,3 +44,4 @@ pub const PROMPTS_FILE: &str = "prompts.json";
 pub const FILE_SERVER_BASE_URL: &str = "https://raw.githubusercontent.com/raven4444/ThiefFMTranslationAgent/refs/heads/master/assets/prompts/";
 pub const RELEASES_URL: &str = "https://api.github.com/repos/raven4444/ThiefFMTranslationAgent/releases/latest";
 pub const VERSION_PREFIX: &str = "v";
+pub const MIS_EXTENSION: &str = "mis";

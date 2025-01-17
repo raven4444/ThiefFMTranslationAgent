@@ -3,7 +3,9 @@ use crate::openai_client::OpenAIClient;
 use crate::secure_storage::SecureStorage;
 use serde::Deserialize;
 use std::error::Error;
+use std::fs;
 use std::io::{self, Write};
+use std::path::Path;
 use std::process::exit;
 
 #[derive(Deserialize)]
@@ -126,4 +128,47 @@ pub async fn check_version() -> Result<(), Box<dyn Error>> {
     }
 
     Ok(())
+}
+
+pub fn get_fm_directory_path() -> io::Result<String> {
+    loop {
+        print!("{}{}{} ", COLOR_GREEN, PATH_TO_FM, COLOR_RESET);
+        io::stdout().flush()?;
+        let mut input = String::new();
+        io::stdin().read_line(&mut input)?;
+        let input_path = input.trim();
+        let path = Path::new(input_path);
+        if !path.exists() {
+            println!("{}{}{}", COLOR_RED, MISSING_DIRECTORY, COLOR_RESET);
+            continue;
+        }
+
+        if !path.is_dir() {
+            println!("{}{}{}", COLOR_RED, INVALID_PATH, COLOR_RESET);
+            continue;
+        }
+        let has_mis_file = fs::read_dir(path)?.filter_map(Result::ok).any(|entry| {
+            entry
+                .path()
+                .extension()
+                .and_then(|ext| ext.to_str())
+                .map(|ext| ext == MIS_EXTENSION)
+                .unwrap_or(false)
+        });
+
+        if !has_mis_file {
+            println!("{}{}{}", COLOR_RED, MISSING_FM_FILES, COLOR_RESET);
+            continue;
+        }
+        let directory = path
+            .file_name()
+            .and_then(|name| name.to_str())
+            .unwrap_or("")
+            .to_string();
+        println!(
+            "{}{}{}{}",
+            COLOR_GREEN, MISSION_DIRECTORY, directory, COLOR_RESET
+        );
+        break Ok(input_path.to_string());
+    }
 }

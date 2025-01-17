@@ -3,12 +3,14 @@ mod openai_client;
 mod secure_storage;
 mod prompt_service;
 mod utils;
+mod translation_service;
 
 use std::error::Error;
 use crate::openai_client::OpenAIClient;
 use crate::secure_storage::SecureStorage;
 use constants::*;
 use crate::prompt_service::PromptService;
+use crate::translation_service::TranslationService;
 use crate::utils::*;
 
 #[tokio::main]
@@ -37,7 +39,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let openai_client = OpenAIClient::new(api_key);
     let prompt_service = PromptService::initialize().await?;
     prompt_service.print_prompts_overview();
-    //todo
+    TranslationService::new(openai_client, prompt_service).run()?;
     wait_for_key_press()?;
     Ok(())
 }

@@ -176,20 +176,16 @@ pub fn get_fm_directory_path() -> io::Result<String> {
 }
 
 pub fn read_file_content(file_path: &Path) -> Result<String, Box<dyn std::error::Error>> {
-    // Read the file into bytes first
     let mut raw_bytes = Vec::new();
     let mut file = fs::File::open(file_path)?;
     file.read_to_end(&mut raw_bytes)?;
 
-    // Detect the encoding
     let detect_result = detect(&raw_bytes);
     let encoding_name = detect_result.0;
 
-    // Get the encoding from the detected name
     let encoding = Encoding::for_label(encoding_name.as_bytes())
         .unwrap_or(encoding_rs::WINDOWS_1252);
 
-    // Convert to UTF-8
     let (cow, _, had_errors) = encoding.decode(&raw_bytes);
 
     if had_errors {

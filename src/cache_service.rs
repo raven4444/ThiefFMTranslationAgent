@@ -1,5 +1,5 @@
 use crate::constants::*;
-use rusqlite::{Connection, Result};
+use rusqlite::{Connection, OptionalExtension, Result};
 use std::fs;
 use std::path::{Path, PathBuf};
 
@@ -66,5 +66,16 @@ impl CacheService {
         tx.commit()?;
 
         Ok(id)
+    }
+
+    pub fn find_by_original_path(&self, original_path: &str) -> Result<Option<i64>> {
+        let mut stmt = self.connection.prepare(
+            "SELECT id FROM translations WHERE original_path = ?1"
+        )?;
+
+        let result = stmt.query_row([original_path], |row| row.get(0))
+            .optional()?;
+
+        Ok(result)
     }
 }

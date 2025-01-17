@@ -4,6 +4,7 @@ mod secure_storage;
 mod prompt_service;
 mod utils;
 mod translation_service;
+mod cache_service;
 
 use std::error::Error;
 use crate::openai_client::OpenAIClient;

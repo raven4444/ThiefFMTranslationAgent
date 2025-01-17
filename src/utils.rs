@@ -163,7 +163,7 @@ pub fn get_fm_directory_path() -> io::Result<String> {
         let directory = path
             .file_name()
             .and_then(|name| name.to_str())
-            .unwrap_or("")
+            .unwrap_or(&*String::new())
             .to_string();
         println!(
             "{}{}{}{}",

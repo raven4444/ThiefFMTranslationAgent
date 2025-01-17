@@ -17,6 +17,7 @@ tokio = { version = "1.43.0", features = ["rt", "rt-multi-thread", "macros"] }
 anyhow = "1.0.95"
 reqwest = "0.12.12"
 webbrowser = "1.0.3"
+rusqlite = { version = "0.32.1", features = ["bundled"] }
 
 [build-dependencies]
 embed-resource = "3.0.1"

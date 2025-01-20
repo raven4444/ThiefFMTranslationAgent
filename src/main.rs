@@ -1,18 +1,21 @@
 mod constants;
 mod openai_client;
-mod secure_storage;
 mod prompt_service;
+mod secure_storage;
+mod translation_cache_service;
+mod translation_helper;
 mod utils;
-mod translation_service;
-mod cache_service;
 
-use std::error::Error;
 use crate::openai_client::OpenAIClient;
-use crate::secure_storage::SecureStorage;
-use constants::*;
 use crate::prompt_service::PromptService;
-use crate::translation_service::TranslationService;
-use crate::utils::*;
+use crate::secure_storage::SecureStorage;
+use crate::translation_helper::TranslationHelper;
+use crate::utils::{
+    ask_default_true, check_version, handle_new_key, mask_api_key, retrieve_existing_key,
+    wait_for_key_press,
+};
+use constants::*;
+use std::error::Error;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
@@ -40,7 +43,10 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let openai_client = OpenAIClient::new(api_key);
     let prompt_service = PromptService::initialize().await?;
     prompt_service.print_prompts_overview();
-    TranslationService::new(openai_client, prompt_service).run().await?;
+    TranslationHelper::new(openai_client, prompt_service)
+        .run()
+        .await?;
+    println!("{}{}{}", COLOR_GREEN, LAST_INFO, COLOR_RESET);
     wait_for_key_press()?;
     Ok(())
 }

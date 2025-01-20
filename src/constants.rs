@@ -7,7 +7,6 @@ pub const REGISTRY_KEY: &str = "MachineGuid";
 pub const CACHE_DB_NAME: &str = "cache.sqlite";
 pub const CACHE_DIRECTORY: &str = "cache";
 
-//labels
 pub const COLOR_GREEN: &str = "\x1b[32m"; // Green
 pub const COLOR_RED: &str = "\x1b[31m"; // Red
 pub const COLOR_YELLOW: &str = "\x1b[33m"; // Yellow
@@ -47,9 +46,14 @@ pub const PROMPT_NOT_FOUND: &str = "Nie znaleziono promptu: ";
 pub const TRANSLATING: &str = "Tłumaczę plik: ";
 pub const FROM: &str = " z ";
 pub const TRANSLATION_COMPLETE: &str = "Tłumaczenie zakończone!";
+pub const LINE_START: &str = "\r";
+pub const SAVING_TRANSLATIONS: &str = "\nZapisywanie tłumaczeń...";
+pub const LAST_INFO: &str = "Tłumaczenia zostały zapisane w katalogu misji. Pamiętaj aby zmienić język fanmisji w AngelLoaderze. \
+    \nTłumaczenie zostało wykonanie z wykorzystaniem dużego modelu językowego - LLM. LLMy są niedeterministyczne, za każdym razem mogą zwracać inny wynik.\
+    \nW dodatku są cyklicznie akutalizowane, ten sam model po kilku miesiącach może zwrócić tłumaczenie lepsze bądź gorsze.";
 
 pub const OPENAI_API_URL: &str = "https://api.openai.com/v1";
-pub const OPENAI_MODEL: &str = "gpt-4o-mini"; //todo: change to gpt-4o after test phase
+pub const OPENAI_MODEL: &str = "gpt-4o";
 pub const PROMPTS_FILE: &str = "prompts.json";
 pub const FILE_SERVER_BASE_URL: &str = "https://raw.githubusercontent.com/raven4444/ThiefFMTranslationAgent/refs/heads/master/assets/prompts/";
 pub const RELEASES_URL: &str =
@@ -89,3 +93,4 @@ pub const SQL_UPDATE_TRANSLATED_CONTENT: &str =
     "UPDATE translations SET translated_content = ?1 WHERE id = ?2";
 pub const SQL_COUNT_UNTRANSLATED: &str =
     "SELECT COUNT(*) FROM translations WHERE translated_content IS NULL";
+pub const SQL_SELECT_TRANSLATIONS: &str = "SELECT translated_path, translated_content FROM translations WHERE translated_content IS NOT NULL";

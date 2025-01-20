@@ -178,7 +178,7 @@ pub fn get_fm_directory_path() -> io::Result<String> {
     }
 }
 
-pub(crate) fn read_file_content(file_path: &Path) -> Result<String, Box<dyn Error>> {
+pub fn read_file_content(file_path: &Path) -> Result<String, Box<dyn Error>> {
     let mut raw_bytes = Vec::new();
     let mut file = fs::File::open(file_path)?;
     file.read_to_end(&mut raw_bytes)?;
@@ -206,4 +206,30 @@ pub(crate) fn read_file_content(file_path: &Path) -> Result<String, Box<dyn Erro
     } else {
         Ok(content)
     }
+}
+
+pub fn remove_polish_chars(text: &str) -> String {
+    text.chars()
+        .map(|c| match c {
+            'ą' => 'a',
+            'ć' => 'c',
+            'ę' => 'e',
+            'ł' => 'l',
+            'ń' => 'n',
+            'ó' => 'o',
+            'ś' => 's',
+            'ź' => 'z',
+            'ż' => 'z',
+            'Ą' => 'A',
+            'Ć' => 'C',
+            'Ę' => 'E',
+            'Ł' => 'L',
+            'Ń' => 'N',
+            'Ó' => 'O',
+            'Ś' => 'S',
+            'Ź' => 'Z',
+            'Ż' => 'Z',
+            _ => c
+        })
+        .collect()
 }

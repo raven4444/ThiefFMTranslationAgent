@@ -1,4 +1,4 @@
-use crate::cache_service::CacheService;
+use crate::translation_cache_service::TranslationCacheService;
 use crate::constants::*;
 use crate::openai_client::OpenAIClient;
 use crate::prompt_service::PromptService;
@@ -27,18 +27,18 @@ impl FileSystemItem {
     }
 }
 
-pub struct TranslationService {
+pub struct TranslationHelper {
     openai_client: OpenAIClient,
     prompt_service: PromptService,
     path: String,
-    cache: Option<CacheService>,
+    cache: Option<TranslationCacheService>,
 }
 
 trait FileProcessor {
     fn process(
         &self,
         base_path: &Path,
-        service: &mut TranslationService,
+        service: &mut TranslationHelper,
     ) -> Result<(), Box<dyn std::error::Error>>;
 }
 
@@ -46,9 +46,9 @@ struct ObjNamesProcessor;
 struct GoalsProcessor;
 struct BooksProcessor;
 
-impl TranslationService {
+impl TranslationHelper {
     pub fn new(openai_client: OpenAIClient, prompt_service: PromptService) -> Self {
-        TranslationService {
+        TranslationHelper {
             openai_client,
             prompt_service,
             path: String::new(),
@@ -64,13 +64,13 @@ impl TranslationService {
             .unwrap()
             .translate_cache(&self.openai_client, &self.prompt_service)
             .await?;
-
+        self.cache.as_mut().unwrap().save_translations()?;
         Ok(String::new())
     }
 
     fn initialize(&mut self) -> Result<(), Box<dyn std::error::Error>> {
         self.path = get_fm_directory_path()?;
-        self.cache = Option::from(CacheService::new(&self.path)?);
+        self.cache = Option::from(TranslationCacheService::new(&self.path)?);
 
         if self.cache.is_none() {
             println!("{}", ISSUE_WITH_CACHE);
@@ -152,7 +152,7 @@ impl FileProcessor for ObjNamesProcessor {
     fn process(
         &self,
         base_path: &Path,
-        service: &mut TranslationService,
+        service: &mut TranslationHelper,
     ) -> Result<(), Box<dyn std::error::Error>> {
         let strings_dir = service.find_dir(base_path, STRINGS_DIR)?;
         let english_dir = service
@@ -169,7 +169,7 @@ impl FileProcessor for GoalsProcessor {
     fn process(
         &self,
         base_path: &Path,
-        service: &mut TranslationService,
+        service: &mut TranslationHelper,
     ) -> Result<(), Box<dyn std::error::Error>> {
         let interface_dir = service.find_dir(base_path, INTRFACE_DIR)?;
 
@@ -195,7 +195,7 @@ impl FileProcessor for BooksProcessor {
     fn process(
         &self,
         base_path: &Path,
-        service: &mut TranslationService,
+        service: &mut TranslationHelper,
     ) -> Result<(), Box<dyn std::error::Error>> {
         let books_dir = service.find_dir(base_path, BOOKS_DIR)?;
         let scan_dir = service

@@ -1,18 +1,18 @@
 use crate::constants::*;
 use crate::openai_client::OpenAIClient;
 use crate::prompt_service::PromptService;
-use crate::utils::wait_for_key_press;
+use crate::utils::{remove_polish_chars, wait_for_key_press};
 use rusqlite::{Connection, OptionalExtension, Result};
 use std::error::Error;
 use std::fs;
 use std::io::Write;
 use std::path::{Path, PathBuf};
 
-pub struct CacheService {
+pub struct TranslationCacheService {
     connection: Connection,
 }
 
-impl CacheService {
+impl TranslationCacheService {
     pub fn new(directory_name: &str) -> Result<Self> {
         let db_path = Self::get_db_path(directory_name)?;
 
@@ -25,7 +25,7 @@ impl CacheService {
 
         connection.execute(SQL_CREATE_TABLE_TRANSLATIONS, [])?;
 
-        Ok(CacheService { connection })
+        Ok(TranslationCacheService { connection })
     }
 
     fn get_db_path(directory_name: &str) -> Result<PathBuf> {
@@ -145,7 +145,7 @@ impl CacheService {
         for row in rows {
             let (id, filename, original_content) = row?;
             current += 1;
-            print!("\r");
+            print!("{}", LINE_START);
             print!(
                 "{}{}{}{}{}{}",
                 COLOR_YELLOW, TRANSLATING, current, FROM, count, COLOR_RESET
@@ -159,8 +159,40 @@ impl CacheService {
                 [&translated_content, &id.to_string()],
             )?;
         }
-        println!();
-        println!("{}{}{}", COLOR_GREEN, TRANSLATION_COMPLETE, COLOR_RESET);
+        print!("{}", LINE_START);
+        print!("{}{}{}", COLOR_GREEN, TRANSLATION_COMPLETE, COLOR_RESET);
+        Ok(())
+    }
+
+    pub fn save_translations(&self) -> Result<()> {
+        println!("{}{}{}", COLOR_GREEN, SAVING_TRANSLATIONS, COLOR_RESET);
+        let mut stmt = self.connection.prepare(SQL_SELECT_TRANSLATIONS)?;
+        let rows = stmt.query_map([], |row| {
+            Ok((
+                row.get::<_, String>(0)?,
+                row.get::<_, String>(1)?,
+            ))
+        })?;
+
+        for row in rows {
+            let (path, content) = row?;
+            let processed_content = remove_polish_chars(&content);
+
+            if let Some(parent) = Path::new(&path).parent() {
+                fs::create_dir_all(parent).map_err(|e|
+                    rusqlite::Error::InvalidPath(e.to_string().into())
+                )?;
+            }
+
+            let mut file = fs::File::create(&path).map_err(|e|
+                rusqlite::Error::InvalidPath(e.to_string().into())
+            )?;
+
+            file.write_all(processed_content.as_bytes()).map_err(|e|
+                rusqlite::Error::InvalidPath(e.to_string().into())
+            )?;
+        }
+
         Ok(())
     }
 }

@@ -2,17 +2,17 @@
   "prompts": [
     {
       "type": "objectives",
-      "version": "20250116-1",
+      "version": "20250120-1",
       "file": "objectives.md"
     },
     {
       "type": "items",
-      "version": "20250116-1",
+      "version": "20250120-1",
       "file": "items.md"
     },
     {
       "type": "books",
-      "version": "20250116-1",
+      "version": "20250120-1",
       "file": "books.md"
     },
     {

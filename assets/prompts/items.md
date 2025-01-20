@@ -27,6 +27,20 @@ Translate English fan missions created for the game "Thief" into grammatically c
         - **Correct order of adjectives and nouns**, ensuring adjectives precede the nouns they modify.
     - Ensure agreement in gender, number, and case between nouns, adjectives, and other related words.
     - Use appropriate Polish idiomatic expressions and colloquialisms when suitable.
+    - Replace Polish letters with diacritics with their non-diacritical equivalents.
+    - Take input text and return the text without Polish diacritical marks.
+    - Cover all Polish diacritical marks and their replacements even a provided proper nouns.
+      - Example replacements:
+          - ą -> a
+          - ć -> c
+          - ę -> e
+          - ł -> l
+          - ń -> n
+          - ó -> o
+          - ś -> s
+          - ź -> z
+          - ż -> z
+        
 </prompt_rules>
 
 <prompt_examples>

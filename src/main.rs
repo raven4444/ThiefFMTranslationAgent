@@ -40,7 +40,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let openai_client = OpenAIClient::new(api_key);
     let prompt_service = PromptService::initialize().await?;
     prompt_service.print_prompts_overview();
-    TranslationService::new(openai_client, prompt_service).run()?;
+    TranslationService::new(openai_client, prompt_service).run().await?;
     wait_for_key_press()?;
     Ok(())
 }

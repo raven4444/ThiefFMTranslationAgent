@@ -1,4 +1,5 @@
 use crate::constants::*;
+use openai::chat::{ChatCompletion, ChatCompletionMessage, ChatCompletionMessageRole};
 use openai::models::Model;
 use openai::Credentials;
 use std::mem::replace;
@@ -29,5 +30,43 @@ impl OpenAIClient {
                 false
             }
         }
+    }
+
+    pub async fn get_completions(
+        &self,
+        system_prompt: &str,
+        user_prompt: &str,
+    ) -> Result<String, Box<dyn std::error::Error>> {
+        let messages = vec![
+            ChatCompletionMessage {
+                role: ChatCompletionMessageRole::System,
+                content: Some(system_prompt.to_string()),
+                name: None,
+                function_call: None,
+                tool_call_id: None,
+                tool_calls: vec![],
+            },
+            ChatCompletionMessage {
+                role: ChatCompletionMessageRole::User,
+                content: Some(user_prompt.to_string()),
+                name: None,
+                function_call: None,
+                tool_call_id: None,
+                tool_calls: vec![],
+            },
+        ];
+        let chat_completion = ChatCompletion::builder(OPENAI_MODEL, messages.clone())
+            .credentials(self.credentials.clone())
+            .create()
+            .await
+            .unwrap();
+        Ok(chat_completion
+            .choices
+            .first()
+            .unwrap()
+            .message
+            .clone()
+            .content
+            .unwrap())
     }
 }

@@ -17,7 +17,7 @@ pub struct PromptFileInfo {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Prompt {
-    content: String,
+    pub content: String,
     version: String,
     #[serde(rename = "type")]
     prompt_type: String,

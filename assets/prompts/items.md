@@ -566,5 +566,3 @@ Name_strnbox: "Kasa pancerna"
 </prompt_examples>
 
 Here you have available proper nouns for this task:
-
-&&NOUNS&&

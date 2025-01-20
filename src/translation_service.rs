@@ -56,9 +56,15 @@ impl TranslationService {
         }
     }
 
-    pub fn run(&mut self) -> Result<String, Box<dyn std::error::Error>> {
+    pub async fn run(&mut self) -> Result<String, Box<dyn std::error::Error>> {
         self.initialize()?;
         self.populate_cache()?;
+        self.cache
+            .as_mut()
+            .unwrap()
+            .translate_cache(&self.openai_client, &self.prompt_service)
+            .await?;
+
         Ok(String::new())
     }
 
@@ -149,10 +155,13 @@ impl FileProcessor for ObjNamesProcessor {
         service: &mut TranslationService,
     ) -> Result<(), Box<dyn std::error::Error>> {
         let strings_dir = service.find_dir(base_path, STRINGS_DIR)?;
-        let english_dir = service.find_dir(&strings_dir, ENGLISH_DIR)?;
-        let obj_names_path = service.find_file(&english_dir, OBJNAMES_FILE)?;
-
-        service.process_file(&obj_names_path, OBJNAMES_FILE)
+        let english_dir = service
+            .find_dir(&strings_dir, ENGLISH_DIR)
+            .unwrap_or_else(|_| strings_dir);
+        if let Ok(obj_names_path) = service.find_file(&english_dir, OBJNAMES_FILE) {
+            service.process_file(&obj_names_path, OBJNAMES_FILE)?;
+        }
+        Ok(())
     }
 }
 

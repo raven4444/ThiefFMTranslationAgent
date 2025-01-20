@@ -1,6 +1,11 @@
 use crate::constants::*;
+use crate::openai_client::OpenAIClient;
+use crate::prompt_service::PromptService;
+use crate::utils::wait_for_key_press;
 use rusqlite::{Connection, OptionalExtension, Result};
+use std::error::Error;
 use std::fs;
+use std::io::Write;
 use std::path::{Path, PathBuf};
 
 pub struct CacheService {
@@ -35,10 +40,6 @@ impl CacheService {
         let cache_dir = base_path.join(APP_NAME).join(CACHE_DIRECTORY).join(path);
 
         Ok(cache_dir.join(CACHE_DB_NAME))
-    }
-
-    pub fn get_db_file_path(&self) -> Result<PathBuf> {
-        Ok(self.connection.path().unwrap().into())
     }
 
     pub fn insert(
@@ -78,5 +79,88 @@ impl CacheService {
             .optional()?;
 
         Ok(result)
+    }
+
+    async fn translate_entry(
+        _openai_client: &OpenAIClient,
+        _prompt_service: &PromptService,
+        _filename: &str,
+        _content: &str,
+    ) -> Result<String, Box<dyn Error>> {
+        let proper_nouns = _prompt_service
+            .get_prompt_by_type(PROMPT_TYPE_PROPER_NOUNS)
+            .ok_or_else(|| {
+                rusqlite::Error::InvalidParameterName(
+                    format!("{}{}", PROMPT_NOT_FOUND, PROMPT_TYPE_PROPER_NOUNS).into(),
+                )
+            })?;
+
+        let base_prompt_type = if _filename == OBJNAMES_FILE {
+            PROMPT_TYPE_ITEMS
+        } else if _filename.ends_with(GOALS_FILE) {
+            PROMPT_TYPE_OBJECTIVES
+        } else {
+            PROMPT_TYPE_BOOKS
+        };
+
+        let base_prompt = _prompt_service
+            .get_prompt_by_type(base_prompt_type)
+            .ok_or_else(|| {
+                rusqlite::Error::InvalidParameterName(
+                    format!("{}{}", PROMPT_NOT_FOUND, base_prompt_type).into(),
+                )
+            })?;
+
+        let combined_prompt = format!("{}\n{}", base_prompt.content, proper_nouns.content);
+        let result = _openai_client
+            .get_completions(&combined_prompt, _content)
+            .await?;
+        Ok(result)
+    }
+
+    pub async fn translate_cache(
+        &mut self,
+        openai_client: &OpenAIClient,
+        prompt_service: &PromptService,
+    ) -> std::result::Result<(), Box<dyn Error>> {
+        let count: i64 = self
+            .connection
+            .query_row(SQL_COUNT_UNTRANSLATED, [], |row| row.get(0))?;
+        println!(
+            "{}{}{}{}",
+            COLOR_YELLOW, FILES_TO_TRANSLATE, count, COLOR_RESET
+        );
+        wait_for_key_press()?;
+
+        let mut stmt = self.connection.prepare(SQL_SELECT_UNTRANSLATED)?;
+        let rows = stmt.query_map([], |row| {
+            Ok((
+                row.get::<_, i64>(0)?,
+                row.get::<_, String>(1)?,
+                row.get::<_, String>(2)?,
+            ))
+        })?;
+        let mut current = 0;
+
+        for row in rows {
+            let (id, filename, original_content) = row?;
+            current += 1;
+            print!("\r");
+            print!(
+                "{}{}{}{}{}{}",
+                COLOR_YELLOW, TRANSLATING, current, FROM, count, COLOR_RESET
+            );
+            let translated_content =
+                Self::translate_entry(openai_client, prompt_service, &filename, &original_content)
+                    .await?;
+            std::io::stdout().flush()?;
+            self.connection.execute(
+                SQL_UPDATE_TRANSLATED_CONTENT,
+                [&translated_content, &id.to_string()],
+            )?;
+        }
+        println!();
+        println!("{}{}{}", COLOR_GREEN, TRANSLATION_COMPLETE, COLOR_RESET);
+        Ok(())
     }
 }

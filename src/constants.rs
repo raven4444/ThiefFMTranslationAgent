@@ -42,9 +42,14 @@ pub const AVAILABLE_PROMPTS: &str = "Dostępne prompty:";
 pub const CANNOT_DECODE_CHARACTERS: &str = "Nie można odczytać znaków korzystając z kodowania: ";
 pub const DIRECTORY_NOT_FOUND: &str = "Nie znaleziono katalogu: ";
 pub const FILE_NOT_FOUND: &str = "Nie znaleziono pliku: ";
+pub const FILES_TO_TRANSLATE: &str = "Pliki do przetłumaczenia: ";
+pub const PROMPT_NOT_FOUND: &str = "Nie znaleziono promptu: ";
+pub const TRANSLATING: &str = "Tłumaczę plik: ";
+pub const FROM: &str = " z ";
+pub const TRANSLATION_COMPLETE: &str = "Tłumaczenie zakończone!";
 
 pub const OPENAI_API_URL: &str = "https://api.openai.com/v1";
-pub const OPENAI_MODEL: &str = "gpt-4o";
+pub const OPENAI_MODEL: &str = "gpt-4o-mini"; //todo: change to gpt-4o after test phase
 pub const PROMPTS_FILE: &str = "prompts.json";
 pub const FILE_SERVER_BASE_URL: &str = "https://raw.githubusercontent.com/raven4444/ThiefFMTranslationAgent/refs/heads/master/assets/prompts/";
 pub const RELEASES_URL: &str =
@@ -62,6 +67,10 @@ pub const MISS_DIR: &str = "miss";
 pub const GOALS_FILE: &str = "goals.str";
 pub const PATH_TO_GOALS: &str = "/english/goals.str";
 pub const STR_EXTENSION: &str = "str";
+pub const PROMPT_TYPE_PROPER_NOUNS: &str = "proper-nouns";
+pub const PROMPT_TYPE_BOOKS: &str = "books";
+pub const PROMPT_TYPE_OBJECTIVES: &str = "objectives";
+pub const PROMPT_TYPE_ITEMS: &str = "items";
 
 pub const SQL_CREATE_TABLE_TRANSLATIONS: &str = "CREATE TABLE IF NOT EXISTS translations (
     id INTEGER PRIMARY KEY,
@@ -72,4 +81,11 @@ pub const SQL_CREATE_TABLE_TRANSLATIONS: &str = "CREATE TABLE IF NOT EXISTS tran
     translated_content TEXT
 )";
 pub const SQL_INSERT_TRANSLATION: &str = "INSERT INTO translations (filename, original_path, translated_path, original_content, translated_content) VALUES (?1, ?2, ?3, ?4, ?5)";
-pub const SQL_SELECT_ID_TRANSLATION_BY_ORIGINAL_PATH: &str = "SELECT id FROM translations WHERE original_path = ?1";
+pub const SQL_SELECT_ID_TRANSLATION_BY_ORIGINAL_PATH: &str =
+    "SELECT id FROM translations WHERE original_path = ?1";
+pub const SQL_SELECT_UNTRANSLATED: &str =
+    "SELECT id, filename, original_content FROM translations WHERE translated_content IS NULL";
+pub const SQL_UPDATE_TRANSLATED_CONTENT: &str =
+    "UPDATE translations SET translated_content = ?1 WHERE id = ?2";
+pub const SQL_COUNT_UNTRANSLATED: &str =
+    "SELECT COUNT(*) FROM translations WHERE translated_content IS NULL";

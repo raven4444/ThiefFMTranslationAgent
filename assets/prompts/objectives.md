@@ -106,5 +106,3 @@ text_7: "Gdy wykonasz już wszystkie zadania, wydostań się na zewnątrz, zanim
 </prompt_examples>
 
 Here you have available proper nouns for this task:
-
-&&NOUNS&&

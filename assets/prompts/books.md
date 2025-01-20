@@ -159,5 +159,3 @@ page_2:"5/34
 </prompt_examples>
 
 Here you have available proper nouns for this task:
-
-&&NOUNS&&

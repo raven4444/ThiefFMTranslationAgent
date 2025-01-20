@@ -99,6 +99,9 @@ pub fn ask_default_true() -> io::Result<bool> {
 }
 
 pub async fn check_version() -> Result<(), Box<dyn Error>> {
+    if cfg!(debug_assertions) {
+        return Ok(());
+    }
     let current_version = env!("CARGO_PKG_VERSION");
     let app_name = env!("CARGO_PKG_NAME");
     println!(

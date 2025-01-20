@@ -69,11 +69,12 @@ impl CacheService {
     }
 
     pub fn find_by_original_path(&self, original_path: &str) -> Result<Option<i64>> {
-        let mut stmt = self.connection.prepare(
-            "SELECT id FROM translations WHERE original_path = ?1"
-        )?;
+        let mut stmt = self
+            .connection
+            .prepare(SQL_SELECT_ID_TRANSLATION_BY_ORIGINAL_PATH)?;
 
-        let result = stmt.query_row([original_path], |row| row.get(0))
+        let result = stmt
+            .query_row([original_path], |row| row.get(0))
             .optional()?;
 
         Ok(result)

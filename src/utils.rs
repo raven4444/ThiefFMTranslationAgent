@@ -192,13 +192,13 @@ pub(crate) fn read_file_content(file_path: &Path) -> Result<String, Box<dyn Erro
 
     if had_errors {
         println!(
-            "Warning: Some characters couldn't be decoded properly using detected encoding: {}",
-            encoding_name
+            "{}{}{}{}",
+            COLOR_RED, CANNOT_DECODE_CHARACTERS, encoding_name, COLOR_RESET
         );
     }
 
     let content = cow.into_owned();
-    if content.starts_with('\u{FEFF}') {
+    if content.starts_with(BOM) {
         Ok(content[1..].to_string())
     } else {
         Ok(content)

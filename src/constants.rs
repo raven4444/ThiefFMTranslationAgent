@@ -38,8 +38,11 @@ pub const INVALID_PATH: &str = "Podana ścieżka jest nieprawidłowa!";
 pub const MISSING_FM_FILES: &str = "Nie znaleziono plików misji!";
 pub const MISSION_DIRECTORY: &str = "Katalog wybranej fanmisji to: ";
 pub const ISSUE_WITH_CACHE: &str =  "Wystąpił problem z keszem, aplikacja zostanie zamknięta. W razie utrzymujących się problemów szukaj pomocy na githubie/forum.";
-
 pub const AVAILABLE_PROMPTS: &str = "Dostępne prompty:";
+pub const CANNOT_DECODE_CHARACTERS: &str = "Nie można odczytać znaków korzystając z kodowania: ";
+pub const DIRECTORY_NOT_FOUND: &str = "Nie znaleziono katalogu: ";
+pub const FILE_NOT_FOUND: &str = "Nie znaleziono pliku: ";
+
 pub const OPENAI_API_URL: &str = "https://api.openai.com/v1";
 pub const OPENAI_MODEL: &str = "gpt-4o";
 pub const PROMPTS_FILE: &str = "prompts.json";
@@ -48,6 +51,17 @@ pub const RELEASES_URL: &str =
     "https://api.github.com/repos/raven4444/ThiefFMTranslationAgent/releases/latest";
 pub const VERSION_PREFIX: &str = "v";
 pub const MIS_EXTENSION: &str = "mis";
+pub const BOM: &str = "\u{FEFF}";
+pub const STRINGS_DIR: &str = "strings";
+pub const ENGLISH_DIR: &str = "english";
+pub const POLISH_DIR: &str = "polish";
+pub const OBJNAMES_FILE: &str = "objnames.str";
+pub const INTRFACE_DIR: &str = "intrface";
+pub const BOOKS_DIR: &str = "books";
+pub const MISS_DIR: &str = "miss";
+pub const GOALS_FILE: &str = "goals.str";
+pub const PATH_TO_GOALS: &str = "/english/goals.str";
+pub const STR_EXTENSION: &str = "str";
 
 pub const SQL_CREATE_TABLE_TRANSLATIONS: &str = "CREATE TABLE IF NOT EXISTS translations (
     id INTEGER PRIMARY KEY,
@@ -58,3 +72,4 @@ pub const SQL_CREATE_TABLE_TRANSLATIONS: &str = "CREATE TABLE IF NOT EXISTS tran
     translated_content TEXT
 )";
 pub const SQL_INSERT_TRANSLATION: &str = "INSERT INTO translations (filename, original_path, translated_path, original_content, translated_content) VALUES (?1, ?2, ?3, ?4, ?5)";
+pub const SQL_SELECT_ID_TRANSLATION_BY_ORIGINAL_PATH: &str = "SELECT id FROM translations WHERE original_path = ?1";

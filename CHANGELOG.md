@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Update checker
 - Cache service
+- Translation logic with file exporter
 
 ### Changed
 

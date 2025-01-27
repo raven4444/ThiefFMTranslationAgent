@@ -74,12 +74,13 @@ I hope thou hast enjoyed the luxury and... private exhibition rooms when I arriv
 page_1: "I know of what import thy collections are... by Durant, which I'm told thou hast been trying to acquire.
 --Master Karras"
 `
-AI: `
+AI:`
 page_0: "Lordzie Gerwazjuszu,
 Mam nadzieję, iż dzięki Dzieciętom Budowniczego cieszysz się... uczestniczenia w przyjęciu, któreż z okazji otwarcia Twojej wystawy wydajesz."
 
 page_1: "Wiemże, jaką wagę do Swoich zbiorów przywiązujesz, lecz ufam, iż... nie tylko ze względu na kolejne podarunki od Mechanistów, ale takoż na obraz Duranta, któren próbujesz pozyskać.
 --Mistrz Karras"
+`
 
 
 USER: `
@@ -156,6 +157,26 @@ page_2:"5/34
 112 - Koszty inwigilacji
 167 - Robota u Lorda Randalla"
 `
+
+USER: `
+Page_0: "Hammerite Compendium of Precepts, Regimens and Rules of Conduct, Vol. 141
+
+When the Builder came amongst his children and asked \"Who is it that \
+hath spoilt this work?\" then didst his errant son answer \"I do not \
+know.\"
+Then didst the Builder cast down his son and smite him with \
+his hammer.  For is it not known that a mistake may be mastered, but a \
+lie lasteth forever on the tongue?"
+
+`
+
+AI: `
+Page_0: "Kompendyum Przykazań, Prawideł y Zasad Postępowania Młotodzierżców, tom 141
+
+Y zstąpił Budowniczy między dzieci swoye y zapytał: \"Ktoż tak robotę spartaczył?\". Y wonczas błądzący syn odpowiedział: \"Nie wiem\". Y wtedyż powalił Budowniczy syna swoyego na ziemię y młotem weń miażdżącym uderzył. Zaliż nie jest wiadome, iże błąd naprawić można, zasię kłamstwo po wsze czasy do języka przywiera?"
+
+`
+
 </prompt_examples>
 
 Here you have available proper nouns for this task:
